@@ -1,0 +1,113 @@
+* {
+  /* border: 2px solid gray; */
+}
+body {
+  background-color: rgb(61, 61, 61);
+  margin: 0;
+  overflow: hidden;
+}
+
+
+#navbar {
+  background-color: rgb(14, 14, 14);
+  width: 100%;
+  height: 40px;
+  /* border: 1px solid rgb(209, 209, 209); */
+  display: flex;
+  align-items: center;
+  position: fixed;
+  z-index: 999;
+}
+
+
+/* hamburger menu */
+div.hamburger{
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+nav ul {
+  margin: 0 0 0 6px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 16px;
+  justify-content: space-between;
+}
+nav ul div {
+  background-color: rgb(209, 209, 209);
+  width: 23px;
+  height: 1px;
+  transition: 0.2s ease;
+}
+nav ul input {
+  position: absolute;
+  margin: 0;
+  width: 23px;
+  height: 35px;
+  left: 12px;
+  top: 3px;
+  opacity: 0;
+  z-index: 5;
+}
+div:nth-child(2){transform-origin: left;}
+div:nth-child(5){transform-origin: right;}
+div:nth-child(3){
+  position: absolute;
+  top:20px;
+}
+nav ul input:checked ~ div:nth-child(3) {
+  transform: rotate(-138deg);
+}
+nav ul input:checked ~ div:nth-child(2){
+  transform: scaleX(0);
+}
+nav ul input:checked ~ div:nth-child(5){
+  transform: scaleX(0);
+}
+nav ul input:checked ~ div:nth-child(4) {
+  transform: rotate(-42deg);
+}
+
+
+/* slider */
+
+div.slider {
+  width: 300px;
+  height: 100vh;
+  background-color: rgb(14,14,14);
+  position: fixed;
+  /* border: 1px solid rgb(209, 209, 209); */
+  z-index: 998;
+  transition: 0.5s;
+  transform: translateX(-100%);
+}
+
+div.slider ul{
+  height: 300px;
+  margin: 40px 0 0 0 ;
+  padding:0;
+  color: rgb(224, 224, 224);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  justify-content: space-evenly;
+}
+
+div.slider ul a {
+  display: flex;
+  text-decoration: none;
+  color: rgb(209, 209, 209);
+  width: 240px;
+  height: 35px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
+
+div.slide{
+  transform: translateX(0);
+}
