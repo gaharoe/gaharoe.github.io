@@ -23,7 +23,7 @@ function timeout(){
       chatMe.classList.add("chatMe");
       let counting = 1;
       let redDisappear = setInterval(function(){
-        if(counting > 1){
+        if(counting > 3){
           alRed.classList.remove("Up");
           alBlue.classList.remove("Up");
           clearInterval(redDisappear);
