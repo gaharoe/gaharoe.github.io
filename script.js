@@ -6,12 +6,12 @@ let time = document.querySelector("div.box div.timebox h1");
 let chatMe = document.querySelector("div.box div.buttons a");
 
 let check = document.querySelector("nav ul input");
-let starter = document.querySelector("div.container div.box button");
-let skip = document.querySelector("div.container div.box div.buttons button:nth-child(2)");
+let starter = document.querySelector("div.container div.box button.start");
+let boost = document.querySelector("div.container div.box div.buttons button.boost");
 function timeout(){
-  let timer = 10;
-  time.innerHTML = `00:${(timer)}`;
-  timer = timer - 1;
+  let timer = 60;
+  time.innerHTML = `00:${(timer)-1}`;
+  timer = timer - 2;
   let interval = setInterval(count, 1000);
   function count(){
     if(timer < 10){time.innerHTML = `00:0${(timer)}`;}
@@ -19,7 +19,7 @@ function timeout(){
     if (timer == 0){
       alRed.classList.add("Up");
       alGreen.classList.remove("Up");
-      skip.classList.remove("skipper");
+      boost.classList.remove("booster");
       chatMe.classList.add("chatMe");
       let counting = 1;
       let redDisappear = setInterval(function(){
@@ -45,14 +45,14 @@ function alertUp(){
   alGreen.classList.add("Up");
   alBlue.classList.add("Up");
   alRed.classList.add("Up");
-  skip.classList.add("skipper");
+  boost.classList.add("booster");
   chatMe.classList.remove("chatMe");
   timeout();
 }
 
 check.addEventListener('click', slider);
 starter.addEventListener('click', alertUp);
-skip.addEventListener('click', function(){
+boost.addEventListener('click', function(){
   alBlue.classList.add("alBlueUper");
   let counting = 1;
   let interval = setInterval(function(){
