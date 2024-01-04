@@ -9,7 +9,7 @@ let check = document.querySelector("nav ul input");
 let starter = document.querySelector("div.container div.box button.start");
 let boost = document.querySelector("div.container div.box div.buttons button.boost");
 function timeout(){
-  let timer = 60;
+  let timer = 30;
   time.innerHTML = `00:${(timer)-1}`;
   timer = timer - 2;
   let interval = setInterval(count, 1000);
