@@ -1,8 +1,14 @@
 * {
   /* border: 2px solid gray; */
 }
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 body {
-  background-color: rgb(61, 61, 61);
+  background-color: rgb(201, 201, 201);
   margin: 0;
   overflow: hidden;
 }
@@ -10,8 +16,8 @@ body {
 
 #navbar {
   background-color: rgb(14, 14, 14);
-  width: 100%;
   height: 40px;
+  width: 100%;
   /* border: 1px solid rgb(209, 209, 209); */
   display: flex;
   align-items: center;
@@ -28,7 +34,7 @@ div.hamburger{
   justify-content: center;
   align-items: center;
 }
-nav ul {
+nav div.hamburger ul {
   margin: 0 0 0 6px;
   padding: 0;
   display: flex;
@@ -36,13 +42,13 @@ nav ul {
   height: 16px;
   justify-content: space-between;
 }
-nav ul div {
+nav div.hamburger ul div {
   background-color: rgb(209, 209, 209);
   width: 23px;
   height: 1px;
   transition: 0.2s ease;
 }
-nav ul input {
+nav div.hamburger ul input {
   position: absolute;
   margin: 0;
   width: 23px;
@@ -52,22 +58,22 @@ nav ul input {
   opacity: 0;
   z-index: 5;
 }
-div:nth-child(2){transform-origin: left;}
-div:nth-child(5){transform-origin: right;}
-div:nth-child(3){
+nav div.hamburger ul div:nth-child(2){transform-origin: left;}
+nav div.hamburger ul div:nth-child(5){transform-origin: right;}
+nav div.hamburger ul div:nth-child(3){
   position: absolute;
-  top:20px;
 }
-nav ul input:checked ~ div:nth-child(3) {
+nav div.hamburger ul input:checked ~ div:nth-child(3) {
+  margin-top: 8px;
   transform: rotate(-138deg);
 }
-nav ul input:checked ~ div:nth-child(2){
+nav div.hamburger ul input:checked ~ div:nth-child(2){
   transform: scaleX(0);
 }
-nav ul input:checked ~ div:nth-child(5){
+nav div.hamburger ul input:checked ~ div:nth-child(5){
   transform: scaleX(0);
 }
-nav ul input:checked ~ div:nth-child(4) {
+nav div.hamburger ul input:checked ~ div:nth-child(4) {
   transform: rotate(-42deg);
 }
 
@@ -106,8 +112,112 @@ div.slider ul a {
   justify-content: center;
   align-items: center;
   border-radius: 50px;
+  transition: 0.2s;
+}
+div.slider ul a:nth-child(4){
+  background-color: rgb(33, 167, 33);
+}
+div.slider ul a:nth-child(4):hover {
+  background-color: rgb(40, 146, 40);
+
+}
+div.slider ul a:hover {
+  background-color: rgb(27, 27, 27);
+}
+div.slider ul a:active {
+  background-color: rgb(48, 48, 48);
 }
 
 div.slide{
   transform: translateX(0);
+}
+
+
+/* main content */
+div.container{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div.container div.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+div.container div.box .alGreen {
+  background-color: rgb(33, 167, 33);
+  border-radius: 5px;
+  width: 250px;
+  height: 25px;
+  position: absolute;
+  color: rgb(209, 209, 209);
+  transition: 0.3s;
+  z-index: -1;
+}
+div.container div.box .alRed {
+  background-color: rgb(167, 33, 33);
+  border-radius: 5px;
+  width: 250px;
+  height: 25px;
+  color: rgb(209, 209, 209);
+  position: absolute;
+  transition: 0.3s;
+  z-index: -2;
+}
+div.container div.box .alBlue {
+  background-color: rgb(42, 33, 167);
+  border-radius: 5px;
+  width: 250px;
+  height: 25px;
+  color: rgb(209, 209, 209);
+  position: absolute;
+  transition: 0.3s;
+  z-index: -2;
+}
+.Up{
+  transform: translateY(-120%);  
+}
+div.container div.box .alBlueUper{
+  transform: translateY(-240%);  
+}
+
+div.container div.box div.timebox {
+  background-color: rgb(14, 14, 14);
+  width: 250px;
+  height: 100px;
+  font-size: 30px;
+  color: rgb(209, 209, 209);
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+div.container div.box div.buttons button {
+  width: 90px;
+  height: 30px;
+  border: 0;
+  border-radius: 50px;
+  background-color: rgb(14,14,14);
+  color: rgb(209, 209, 209);
+}
+div.container div.box div.buttons button:nth-child(2) {
+  position: absolute;
+  transform: translateX(-100%);
+  z-index: -1;
+}
+div.container div.box div.buttons button.skipper {
+  z-index: 1;
+}
+div.buttons a {
+  position:absolute;
+  transform: translate(-100%);
+  z-index: -3;
+  transition: 2s;
+}
+div.box div.buttons a button.chatMe{
+  background-color: rgb(33, 167, 33);
+  color: black;
+}
+div.box div.buttons a.chatMe {
+  transform: translate(-100%, 120%);
 }
