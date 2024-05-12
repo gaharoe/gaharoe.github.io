@@ -1,58 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
-  <link rel="stylesheet" href="style.css">
-  <title>gaharoe_</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+
+<style>
+    @-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
+}
+    body {
+        margin: 0;
+        background-color: rgb(228, 228, 228);
+
+    }
+    .main {
+        width: 100vw;
+        height: 100vh;
+        flex-direction: column;
+
+    }
+    .mainboard{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 10px;
+        background-color: rgb(29, 30, 41);
+        width: 416px;
+        border-radius: 0 0 10px 10px;
+        z-index: 3;
+
+    }
+    
+    .result {
+        background-color: rgb(29, 30, 41);
+        width: 416px;
+        padding: 10px 10px 0 10px;
+        border-radius: 10px 10px 0 0;
+        z-index: 3;
+        transition: 0.5s;
+        
+    }
+    .value {
+        width: 400px;
+        height: 40px;
+        margin: 2px;
+        text-align: end;
+        padding: 5px 10px 0 0;
+        border-radius: 5px;
+        font-size: 25px;
+    }
+.move {
+    transform: translatey(-55px);
+}
+
+    /* template */
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .pad {
+        margin: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 100px;
+        border-radius: 5px;
+        transition: 0.2s;
+    }
+    .bg-num{
+        background-color: rgb(216, 216, 216);
+    }
+    .bg-opt {
+        background-color: rgb(116, 204, 108);
+    }
+.alert {
+    background-color: red;
+    color: white;
+}
+
+    .hasil {
+        position: absolute;
+        width: 420px;
+        height: 60px;
+        background-color: rgba(255, 0, 0, 0);
+        /* z-index: -1; */
+        transform: translate(0, -210px);
+        display: flex;
+        align-items: center;
+        font-size: 50px;
+        text-align: center;
+    }
+    /* hover & active */
+    .pad:hover, .pad2:hover {
+        opacity: 0.5;
+    }
+    .report {
+        position: absolute;
+    }
+</style>
+
+    <title>Calculator</title>
 </head>
 <body>
-
-  <!-- navbar -->
-  <nav id="navbar">
-    <div class="hamburger">
-      <ul>
-        <input type="checkbox" id="">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </ul>
+    <div class="main container" id="main">
+        <button type="button" id="report" class="report"><a>report bug to developer</a></button>
+        <input type="text" class="hasil" id="hasil">
+        <audio src="dusktales.mp3"></audio>
+        <div class="result" id="result">
+            <input type="text" class="value bg-num" id="value">
+        </div>
+        <div class="mainboard ">
+            <button type="button" class="pad bg-num" onclick="display('1')">1</button>
+            <button type="button" class="pad bg-num" onclick="display('2')">2</button>
+            <button type="button" class="pad bg-num" onclick="display('3')">3</button>
+            <button type="button" class="pad bg-opt" onclick="display('+')">+</button>
+            <button type="button" class="pad bg-num" onclick="display('4')">4</button>
+            <button type="button" class="pad bg-num" onclick="display('5')">5</button>
+            <button type="button" class="pad bg-num" onclick="display('6')">6</button>
+            <button type="button" class="pad bg-opt" onclick="display('-')">-</button>
+            <button type="button" class="pad bg-num" onclick="display('7')">7</button>
+            <button type="button" class="pad bg-num" onclick="display('8')">8</button>
+            <button type="button" class="pad bg-num" onClick="display('9')">9</button>
+            <button type="button" class="pad bg-opt" onclick="display('*')">*</button>
+            <button type="button" class="pad bg-opt" onclick='del()' id="clear">C</button>
+            <button type="button" class="pad bg-num" onclick="display('0')">0</button>
+            <button type="button" class="pad bg-opt" id="solve" onclick="solve()">=</button>
+            <button type="button" class="pad bg-opt" onclick="display('/')">/</button>
+        </div>
     </div>
-  </nav>
-  <!-- navbar, slider -->
-  <div id="slider" class="slider">
-    <ul>
-      <a href="#">home</a>
-      <a href="#">product</a>
-      <a href="#">about</a>
-      <a href="https:/instagram.com/gaharoe_">contact</a>
-    </ul>
-  </div>
+<script>
+    // const result = document.getElementById("value");
 
-  
-  <!-- content -->
-  <div class="container">
-    <div class="box">
-      <div class="alBlue center">sabar...</div>
-      <div class="alGreen center">tunggu sebentar...</div>
-      <div class="alRed center">terimakasih atas perhatiannya</div>
-      <div class="timebox center">
-        <h1 style="margin: 0;">00:00</h1>
-      </div>
-      <div class="buttons">
-        <button class="start" type="button">mulai...!</button>
-        <button class="boost" type="button">boost</button>
-        <a href="https://wa.me/+6282313380653">
-          <button type="button">chat me!</button>
-        </a>
-      </div>
-    </div>
-  </div>
+    function del(){
+        console.log("true");
+        document.getElementsByTagName("audio")[0].play();
+        document.getElementById("value").value = "";
+        document.getElementById("clear").classList.remove("alert")
+        document.getElementById("result").classList.remove("move");
+        document.getElementById("main").classList.add("rotating");
+        
+    }
 
+    function display(val) {
+        document.getElementById("value").value += val;
+    }
 
+    function solve(){
+        document.getElementById("clear").classList.add("alert")
+        document.getElementById("result").classList.add("move");
+        document.getElementById("hasil").value = eval(document.getElementById("value").value);
+    }
 
-
-  <script src="script.js"></script>
+</script>
 </body>
 </html>
